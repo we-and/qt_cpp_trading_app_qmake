@@ -26,14 +26,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Set up the left panel
     leftPanel = new QWidget;
-    leftLayout = new QVBoxLayout(leftPanel);
-    leftPanel->setLayout(leftLayout);
+    setupLeftPanel(leftPanel);
+//    leftLayout = new QVBoxLayout(leftPanel);
+  //  leftPanel->setLayout(leftLayout);
 
     // Add buttons to the left panel
-    QPushButton *button1 = new QPushButton("Indices");
-    connect(button1, &QPushButton::clicked, this, &MainWindow::onButtonClicked); // Connect the signal to the slot
+  //  QPushButton *button1 = new QPushButton("Indices");
+    //connect(button1, &QPushButton::clicked, this, &MainWindow::onButtonClicked); // Connect the signal to the slot
 
-    leftLayout->addWidget(button1);
+//      leftLayout->addWidget(button1);
     // Add more buttons as needed
 
     // Set up the MDI area
@@ -45,6 +46,55 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Set the central widget
     setCentralWidget(centralWidget);
+}
+
+
+void MainWindow::setupLeftPanel(QWidget *parent)
+{
+
+    QStringList financialInstruments;
+    financialInstruments << "Indices"
+                         << "FX"
+                         << "Cryptocurrencies"
+                         << "Commodities"
+                         << "ETF"
+                         << "Bonds"
+                         << "Options";
+
+    QStringList financialInstruments2;
+    financialInstruments2 << "Account"
+                         << "Settings"
+                         << "Account"
+;
+
+
+    QVBoxLayout *panelLayout = new QVBoxLayout(parent);
+
+    // Top buttons layout
+    QVBoxLayout *topLayout = new QVBoxLayout();
+    for (int i = 1; i <= 5; ++i) {
+        QPushButton *button = new QPushButton( financialInstruments[i]   , parent);
+        connect(button, &QPushButton::clicked, this, &MainWindow::onButtonClicked); // Connect the signal to the slot
+        topLayout->addWidget(button);
+    }
+
+    // Bottom buttons layout
+    QVBoxLayout *bottomLayout = new QVBoxLayout();
+    for (int i = 1; i <= 2; ++i) {
+        QPushButton *button = new QPushButton(financialInstruments2[i], parent);
+        //  QPushButton *button1 = new QPushButton("Indices");
+        connect(button, &QPushButton::clicked, this, &MainWindow::onButtonClicked); // Connect the signal to the slot
+
+        bottomLayout->addWidget(button);
+    }
+
+    // Spacer item
+    QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+    // Add top layout, spacer, and bottom layout to the panel layout
+    panelLayout->addLayout(topLayout);
+    panelLayout->addItem(spacer);
+    panelLayout->addLayout(bottomLayout);
 }
 
 MainWindow::~MainWindow()
@@ -85,6 +135,7 @@ void MainWindow::onButtonClicked()
     table->resizeColumnsToContents();
 
     subWindow->setWidget(table);
+
     mdiArea->addSubWindow(subWindow);
 
     subWindow->show();}

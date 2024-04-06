@@ -20,6 +20,8 @@ public:
 private:
     QWidget *centralWidget;
     QWidget *leftPanel;
+
+    void setupLeftPanel(QWidget *parent);
     QVBoxLayout *leftLayout;
     QMdiArea *mdiArea;
 };
