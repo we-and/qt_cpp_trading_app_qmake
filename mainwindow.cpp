@@ -102,6 +102,33 @@ MainWindow::~MainWindow()
 }
 
 
+
+
+QList<QCandlestickSet *> generateRealisticCandlestickData(int count) {
+    QList<QCandlestickSet *> sets;
+
+    // Starting parameters
+    qreal lastClose = 100.0; // Starting stock price
+    qreal trend = 0.2; // Slight upward trend, can be negative for downward
+
+    for (int i = 0; i < count; ++i) {
+        qreal open = lastClose + (QRandomGenerator::global()->generateDouble() * 2.0 - 1.0 + trend);
+        qreal close = open + (QRandomGenerator::global()->generateDouble() * 2.0 - 1.0 + trend);
+        qreal high = qMax(open, close) + QRandomGenerator::global()->generateDouble() * 5.0;
+        qreal low = qMin(open, close) - QRandomGenerator::global()->generateDouble() * 5.0;
+
+        // Ensure the low is never below zero
+        low = qMax(0.0, low);
+
+        sets.append(new QCandlestickSet(open, high, low, close, i));
+
+        lastClose = close; // Update lastClose for the next day
+    }
+
+    return sets;
+}
+
+
 void MainWindow::onButtonClicked()
 {
     // Create a new subwindow
@@ -161,21 +188,12 @@ void MainWindow::onCellClicked(int row, int column)
 
 
     int N=100;
+  candlesticks =generateRealisticCandlestickData(N);
     // Generate 500 random candlesticks
     for (int i = 0; i < N; ++i) {
-        qreal open = QRandomGenerator::global()->bounded(10) + 10.0;
-        qreal close = QRandomGenerator::global()->bounded(10) + 10.0;
-        qreal high = qMax(open, close) + QRandomGenerator::global()->bounded(5);
-        qreal low = qMin(open, close) - QRandomGenerator::global()->bounded(5);
-
-        QCandlestickSet *set = new QCandlestickSet(open, high, low, close, i);
-        candlesticks.append(set);
-
-        //series->append(new QCandlestickSet(open, high, low, close, i));
-
-        // Update highest and lowest values
-        if (high > highestValue) highestValue = high;
-        if (low < lowestValue) lowestValue = low;
+     QCandlestickSet *  set = candlesticks[i];
+        if (set->high() > highestValue) highestValue = set->high();
+        if (set->low() < lowestValue) lowestValue = set->low();
     }
 
     // Create the chart
