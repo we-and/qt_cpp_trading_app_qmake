@@ -10,13 +10,19 @@ CONFIG += c++17
 SOURCES += \
     financedatamanager.cpp \
     financialdata.cpp \
+    leftpanel.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    stylesbutton.cpp \
+    tickertablemanager.cpp
 
 HEADERS += \
     financedatamanager.h \
     financialdata.h \
-    mainwindow.h
+    leftpanel.h \
+    mainwindow.h \
+    stylesbutton.h \
+    tickertablemanager.h
 
 FORMS += \
     mainwindow.ui

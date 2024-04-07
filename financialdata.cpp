@@ -8,7 +8,7 @@ FinancialChart::FinancialChart(QWidget *parent) : QWidget(parent), series(new QC
     series->setDecreasingColor(Qt::red);
 
     chart->addSeries(series);
-    chart->setTitle("Financial Data");
+    chart->setTitle(title);
     chart->createDefaultAxes();
     chart->legend()->hide();
 
@@ -42,4 +42,8 @@ void FinancialChart::addCandlestickData(const QList<QCandlestickSet *> &dataSets
         maxPrice = qMax(maxPrice, set->high());
     }
     chart->axes(Qt::Vertical).first()->setRange(minPrice, maxPrice);
+}
+
+void FinancialChart::setTitle(QString title_){
+    title=title_;
 }

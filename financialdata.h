@@ -13,8 +13,9 @@ class FinancialChart : public QWidget
 public:
     explicit FinancialChart(QWidget *parent = nullptr);
     void addCandlestickData(const QList<QCandlestickSet *> &dataSets, const QStringList dateLabels);
-
+    void setTitle(QString title_);
 private:
+    QString title;
     QChartView *chartView;
     QCandlestickSeries *series;
     QChart *chart;

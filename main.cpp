@@ -3,11 +3,11 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
-
+#include <iostream>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+ std::cout << "START"<<std::endl;
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for (const QString &locale : uiLanguages) {

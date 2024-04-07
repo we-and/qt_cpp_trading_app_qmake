@@ -15,13 +15,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     public slots:
-   void onButtonClicked();
-        void onCellClicked(int row, int column);
-private:
+        void onTickerTableCellClicked(int row, int column);
+
+    private:
     QWidget *centralWidget;
     QWidget *leftPanel;
 
-    void setupLeftPanel(QWidget *parent);
     QVBoxLayout *leftLayout;
     QMdiArea *mdiArea;
 };
