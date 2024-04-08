@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "customtabwidget.h"
 #include <QMainWindow>
 #include <QMdiArea>
 #include <QPushButton>
@@ -14,12 +15,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    public slots:
-        void onTickerTableCellClicked(int row, int column);
+
+    QWidget *midPanel;
+
+public slots:
+///        void onTickerTableCellClicked(int row, int column);
 
     private:
-    QWidget *centralWidget;
-    QWidget *leftPanel;
+    CustomTabWidget   *tabWidget;
+        QWidget *leftPanel;
 
     QVBoxLayout *leftLayout;
     QMdiArea *mdiArea;

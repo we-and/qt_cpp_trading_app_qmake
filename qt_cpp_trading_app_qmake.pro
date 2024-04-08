@@ -8,21 +8,35 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    customtabbar.cpp \
+    customtabwidget.cpp \
     financedatamanager.cpp \
     financialdata.cpp \
     leftpanel.cpp \
     main.cpp \
     mainwindow.cpp \
+    midpanel.cpp \
+    popuppanel.cpp \
+    searchbutton.cpp \
     stylesbutton.cpp \
-    tickertablemanager.cpp
+    tickertablemanager.cpp \
+    topwidget.cpp \
+    tradewidget.cpp
 
 HEADERS += \
+    customtabbar.h \
+    customtabwidget.h \
     financedatamanager.h \
     financialdata.h \
     leftpanel.h \
     mainwindow.h \
+    midpanel.h \
+    popuppanel.h \
+    searchbutton.h \
     stylesbutton.h \
-    tickertablemanager.h
+    tickertablemanager.h \
+    topwidget.h \
+    tradewidget.h
 
 FORMS += \
     mainwindow.ui
@@ -36,3 +50,9 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    icons.qrc
+
+DISTFILES += \
+    assets/icons/search.png

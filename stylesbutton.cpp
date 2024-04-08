@@ -9,8 +9,8 @@ StyledButton::StyledButton(const QString &text, QWidget *parent)
   StyledButton {
             text-align: left;
             border: none;
-            background-color: white;
-            padding: 5px; /* Adjust padding as needed */
+            background-color: white;font-weight:bold;
+            padding: 10px; /* Adjust padding as needed */
             margin: 0px; /* Ensure no margin */
         }
         StyledButton:hover {
